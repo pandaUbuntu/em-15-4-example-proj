@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Windows.Forms;
 
@@ -59,8 +60,21 @@ namespace WinFormsApp1
 
         private void button4_Click(object sender, EventArgs e)
         {
+            if (this.textBox1.Text.Trim().Length == 0 || this.textBox2.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Пусті поля недопустимі!", "ПОМИЛКА!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             double a = Double.Parse(this.textBox1.Text.Trim());
             double b = Double.Parse(this.textBox2.Text.Trim());
+
+            if (b == 0)
+            {
+                MessageBox.Show("Ділити на нуль не можна!", "ПОМИЛКА!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             double dil = a / b;
             MessageBox.Show($"Частка: {dil}", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
